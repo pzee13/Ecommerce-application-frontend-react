@@ -92,6 +92,8 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation ,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const BaseUrl = import.meta.env.VITE_BASE_URL
+
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -120,7 +122,7 @@ const Navbar = () => {
     if (token) {
       try {
         // Call the API to logout
-        await axios.post('http://localhost:5000/api/users/logout', {}, {
+        await axios.post(`${BaseUrl}/api/users/logout`, {}, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
