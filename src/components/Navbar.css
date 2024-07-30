@@ -1,0 +1,148 @@
+/* Navbar.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  }
+  
+  .navbar {
+    background-color: #fff;
+    border-bottom: 1px solid #eaeaea;
+    position: relative;
+    padding: 0 1rem;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px; /* Adjusted height for navbar */
+  }
+  
+  .navbar-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .navbar-logo {
+    flex-shrink: 0;
+  }
+  
+  .navbar-logo-link {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-logo-image {
+    height: 50px;
+    width: auto;
+  }
+  
+  .navbar-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: none; /* Hidden by default for larger screens */
+    flex-shrink: 0;
+    padding: 0.5rem;
+    margin-left: auto; /* Pushes toggle to the far right on mobile */
+  }
+  
+  .icon-hamburger,
+  .icon-close {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+    stroke: #000;
+    fill: none;
+  }
+  
+  .icon-close {
+    display: none; /* Hidden by default */
+  }
+  
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    transition: max-height 0.3s ease-in-out;
+    overflow: hidden;
+    max-height: 0; /* Collapse the menu on mobile */
+    width: 100%;
+    flex-direction: column;
+    position: absolute;
+    top: 100%; /* Position the menu below the navbar */
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    z-index: 999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-link,
+  .navbar-button {
+    padding: 20px 40px;
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    display: block;
+    text-align: center;
+  }
+  
+  .navbar-link:hover,
+  .navbar-button:hover {
+    color: #1d72b8;
+  }
+  
+  .navbar-button {
+    background-color: #1d72b8;
+    color: #fff;
+    border-radius: 4px;
+    text-align: center;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+   width: 60px;
+   height:40px;
+  }
+  
+  .navbar-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .show {
+    max-height: 500px; /* Expanded height for the menu */
+  }
+  
+  @media (min-width: 992px) {
+    .navbar-toggle {
+      display: none; /* Hide the toggle button on larger screens */
+    }
+  
+    .navbar-links {
+      display: flex;
+      position: static; /* Position links inline on larger screens */
+      flex-direction: row;
+      max-height: none;
+      width: auto;
+      box-shadow: none; /* Remove shadow on larger screens */
+      background-color: transparent; /* Remove background on larger screens */
+    }
+  
+    .navbar-link,
+    .navbar-button {
+      padding: 0;
+      margin-left: 20px; /* Add spacing between links */
+      text-align: left;
+    }
+  
+    .navbar-button {
+      margin-left: 40px; /* Add more space before button */
+    }
+  }
+  
