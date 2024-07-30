@@ -9,7 +9,7 @@ import Navbar from '../components/Navbar';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-
+const BaseUrl = import.meta.env.VITE_BASE_URL
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 const Cart = () => {
@@ -20,7 +20,7 @@ const Cart = () => {
   const fetchCart = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/cart', {
+      const response = await axios.get(`${BaseUrl}/api/cart`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -53,7 +53,7 @@ const Cart = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.patch(
-        'http://localhost:5000/api/cart/update',
+        `${BaseUrl}/api/cart/update`,
         { productId, quantity: newQuantity },
         {
           headers: {
@@ -83,7 +83,7 @@ const Cart = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.patch(
-        'http://localhost:5000/api/cart/remove',
+        `${BaseUrl}/api/cart/remove`,
         { productId },
         {
           headers: {
@@ -108,7 +108,7 @@ const Cart = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'http://localhost:5000/api/orders',
+        `${BaseUrl}/api/orders`,
         { products: cart, totalAmount },
         {
           headers: {

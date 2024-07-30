@@ -4,6 +4,7 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Skeleton from 'react-loading-skeleton'; 
 import 'react-loading-skeleton/dist/skeleton.css'; 
+const BaseUrl = import.meta.env.VITE_BASE_URL
 
 const SessionList = () => {
   const [sessions, setSessions] = useState([]);  // State to hold sessions
@@ -15,7 +16,7 @@ const SessionList = () => {
     const fetchSessions = async () => {
       try {
         const token = localStorage.getItem('token'); 
-        const response = await axios.get('http://localhost:5000/api/users/sessions', {
+        const response = await axios.get(`${BaseUrl}/api/users/sessions`, {
           headers: {
             Authorization: `Bearer ${token}`, 
           },

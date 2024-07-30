@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+const BaseUrl = import.meta.env.VITE_BASE_URL
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,7 +16,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const loginResponse = await axios.post('http://localhost:5000/api/users/login', { email, password });
+      const loginResponse = await axios.post(`${BaseUrl}/api/users/login`, { email, password });
 
       if (loginResponse.data.token) {
         toast.success(loginResponse.data.message);

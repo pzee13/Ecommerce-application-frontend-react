@@ -7,6 +7,7 @@ import Navbar from '../components/Navbar';
 import Modal from '../components/Modal'; // Import a modal component (you need to create this)
 import { toast } from 'react-toastify';
 import 'react-loading-skeleton/dist/skeleton.css'; // Import Skeleton CSS
+const BaseUrl = import.meta.env.VITE_BASE_URL
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -17,7 +18,7 @@ const Orders = () => {
     const fetchOrders = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/orders', {
+        const response = await axios.get(`${BaseUrl}/api/orders`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setOrders(response.data);

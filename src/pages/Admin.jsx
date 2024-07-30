@@ -7,6 +7,8 @@ import { toast } from 'react-toastify';
 
 Modal.setAppElement('#root'); // Adjust as necessary for your app's root element
 
+const BaseUrl = import.meta.env.VITE_BASE_URL
+
 const Admin = () => {
   const [products, setProducts] = useState([]);
   const [name, setName] = useState('');
@@ -21,7 +23,7 @@ const Admin = () => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const response = await axios.get('http://localhost:5000/api/products');
+        const response = await axios.get(`${BaseUrl}/api/products`);
         if (Array.isArray(response.data)) {
           setProducts(response.data);
         } else {
@@ -73,7 +75,7 @@ const Admin = () => {
       if (editProductId) {
         // Update existing product
         response = await axios.put(
-          `http://localhost:5000/api/products/${editProductId}`,
+          `${BaseUrl}/api/products/${editProductId}`,
           { name, description, price, stock },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -82,7 +84,7 @@ const Admin = () => {
       } else {
         // Add new product
         response = await axios.post(
-          'http://localhost:5000/api/products',
+          `${BaseUrl}/api/products`,
           { name, description, price, stock },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -93,7 +95,7 @@ const Admin = () => {
       // Refetch products to ensure state consistency
       const fetchProducts = async () => {
         try {
-          const response = await axios.get('http://localhost:5000/api/products');
+          const response = await axios.get(`${BaseUrl}/api/products`);
           if (Array.isArray(response.data)) {
             setProducts(response.data);
           } else {
@@ -125,7 +127,7 @@ const Admin = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.delete(
-        `http://localhost:5000/api/products/${productId}`,
+        `${BaseUrl}/api/products/${productId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success(response.data.message);

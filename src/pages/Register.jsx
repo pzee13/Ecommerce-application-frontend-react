@@ -4,6 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Link,useNavigate } from 'react-router-dom';
+const BaseUrl = import.meta.env.VITE_BASE_URL
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -15,7 +16,7 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/users/register', { email, password, username, role });
+      const response = await axios.post(`${BaseUrl}/api/users/register`, { email, password, username, role });
       toast.success(response.data.message);
       navigate('/login')
     } catch (error) {

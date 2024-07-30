@@ -3,6 +3,7 @@ import  { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+const BaseUrl = import.meta.env.VITE_BASE_URL
 
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
@@ -37,7 +38,7 @@ const CheckoutForm = ({ orderId, totalAmount }) => {
       try {
         const token = localStorage.getItem('token');
         const response = await axios.post(
-          'http://localhost:5000/api/payment',
+          `${BaseUrl}/api/payment`,
           { orderId, paymentMethodId: paymentMethod.id },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -66,7 +67,7 @@ const Payment = () => {
     const fetchOrder = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/orders/${orderId}`, {
+        const response = await axios.get(`${BaseUrl}/api/orders/${orderId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setOrder(response.data);
